@@ -2,10 +2,11 @@
 var displayElement = document.querySelector(".display");
 var correctWrong = document.querySelector(".correct-or-wrong");
 var score = 0;
+var questionNo = 0;
 
 // question objects array
 var questions = [{
-    question1: "Question 1: Semper ubi sub ubi. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua?",
+    question: "Question 1: Semper ubi sub ubi. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua?",
     options: [
         "Option 1",
         "Option 2",
@@ -14,7 +15,7 @@ var questions = [{
     ],
     answer: 2
 }, {
-    question1: "Question 2: Semper ubi sub ubi. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua?",
+    question: "Question 2: Semper ubi sub ubi. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua?",
     options: [
         "Option 1",
         "Option 2",
@@ -23,7 +24,7 @@ var questions = [{
     ],
     answer: 3
 }, {
-    question1: "Question 3: Semper ubi sub ubi. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua?",
+    question: "Question 3: Semper ubi sub ubi. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua?",
     options: [
         "Option 1",
         "Option 2",
@@ -32,7 +33,7 @@ var questions = [{
     ],
     answer: 1
 }, {
-    question1: "Question 4: Semper ubi sub ubi. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua?",
+    question: "Question 4: Semper ubi sub ubi. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua?",
     options: [
         "Option 1",
         "Option 2",
@@ -41,7 +42,7 @@ var questions = [{
     ],
     answer: 2
 }, {
-    question1: "Question 5: Semper ubi sub ubi. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua?",
+    question: "Question 5: Semper ubi sub ubi. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua?",
     options: [
         "Option 1",
         "Option 2",
@@ -50,7 +51,7 @@ var questions = [{
     ],
     answer: 4
 }, {
-    question1: "Question 6: Semper ubi sub ubi. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua?",
+    question: "Question 6: Semper ubi sub ubi. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua?",
     options: [
         "Option 1",
         "Option 2",
@@ -59,7 +60,7 @@ var questions = [{
     ],
     answer: 2
 }, {
-    question1: "Question 7: Semper ubi sub ubi. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua?",
+    question: "Question 7: Semper ubi sub ubi. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua?",
     options: [
         "Option 1",
         "Option 2",
@@ -114,18 +115,15 @@ function startQuiz(event) {
 
 // display questions
 function displayQuestions() {
-    questionsLayout();
-    for (var i = 0; i < questions.length; i++) {
-
-    }
+    questionsLayout(questionNo);
 }
 
 // layout questions
-function questionsLayout() {
+function questionsLayout(qNo) {
 
     // question
     var questionDisplay = document.createElement("p");
-    questionDisplay.textContent = questions[0].question1;
+    questionDisplay.textContent = questions[qNo].question;
     questionDisplay.setAttribute("class", "question");
     displayElement.appendChild(questionDisplay);
 
@@ -135,14 +133,14 @@ function questionsLayout() {
     displayElement.appendChild(questionsUl);
 
     // questions li
-    for (var i = 0; i < questions[0].options.length; i++) {
+    for (var i = 0; i < questions[qNo].options.length; i++) {
         var questionsLi = document.createElement("li");
         questionsLi.setAttribute("class", "questionsLi");
         questionsUl.appendChild(questionsLi);
 
         // answer button
         var answerButton = document.createElement("button");
-        answerButton.textContent = questions[0].options[i];
+        answerButton.textContent = questions[qNo].options[i];
         answerButton.setAttribute("class", "answerButton");
         answerButton.setAttribute("id", i);
         questionsLi.appendChild(answerButton);
@@ -155,21 +153,31 @@ function questionsLayout() {
 
 // check answer
 function checkAnswer(event) {
-    if (event.target.id == questions[0].answer - 1) {
+    if (event.target.id == questions[questionNo].answer - 1) {
         correctWrong.textContent = "Correct!";
         score++;
     } else {
         correctWrong.textContent = "Wrong!";
     }
-    timeoutAnswer();
+    timeoutAnswerDisplay();
     clearScreen();
+    // check if last question
+    if (questionNo === questions.length - 1) {
+        // if last question
+        // submit and display scores
+        displayElement.textContent = `Finished ${score}`;
+    } else {
+        questionNo++;
+        displayQuestions(questionNo);
+    }
+
 }
 
 // timeout answer
-function timeoutAnswer() {
+function timeoutAnswerDisplay() {
     var answerDisplayTimeout = setTimeout(function() {
         correctWrong.textContent = "";
-    }, 2000);
+    }, 1000);
 }
 
 // open welcome screen
