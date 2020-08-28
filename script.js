@@ -86,6 +86,12 @@ var allDoneObj = {
     button: "Submit"
 }
 
+// save object
+var saveObjects = {
+    localScore: 0,
+    localInitials: "",
+}
+
 // append start screen to page
 function welcomeScreen() {
 
@@ -227,7 +233,9 @@ function displayAllDone() {
     allDoneButton.addEventListener("click", submitScore);
 }
 
-function submitScore(event) {}
+function submitScore(event) {
+
+}
 
 // open welcome screen
 welcomeScreen();
