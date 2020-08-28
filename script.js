@@ -74,16 +74,30 @@ var startScreen = {
 }
 
 // append start screen to page
-questionElement.appendChild(document.createElement("h1")).textContent = startScreen.startTitle;
-questionElement.appendChild(document.createElement("p")).textContent = startScreen.startMessage;
-questionElement.appendChild(document.createElement("button")).textContent = startScreen.startButton;
-questionElement.lastElementChild.setAttribute("class", "startButton");
+function welcomeScreen() {
+    questionElement.appendChild(document.createElement("h1")).textContent = startScreen.startTitle;
+    questionElement.lastElementChild.setAttribute("class", "startTitle");
 
-var startButton = document.querySelector(".startButton");
+    questionElement.appendChild(document.createElement("p")).textContent = startScreen.startMessage;
+    questionElement.lastElementChild.setAttribute("class", "startMessage");
+
+    questionElement.appendChild(document.createElement("button")).textContent = startScreen.startButton;
+    questionElement.lastElementChild.setAttribute("class", "startButton");
+
+    var startButton = document.querySelector(".startButton");
+
+    startButton.addEventListener("click", startQuiz);
+}
+
+function clearWelcomeScreen() {
+    questionElement.innerHTML = "";
+}
 
 function startQuiz(event) {
     event.preventDefault();
+    // startTimer();
+    clearWelcomeScreen();
 
 }
 
-startButton.addEventListener("click", startQuiz);
+welcomeScreen();
