@@ -156,9 +156,13 @@ function checkAnswer(event) {
     } else {
         correctWrong.textContent = "Wrong!";
     }
+    timeoutAnswer();
     clearScreen();
-    var answerDisplayInterval = setTimeout(function() {
+}
 
+function timeoutAnswer() {
+    var answerDisplayTimeout = setTimeout(function() {
+        correctWrong.textContent = "";
     }, 2000);
 }
 
