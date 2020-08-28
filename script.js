@@ -1,5 +1,6 @@
 var displayElement = document.querySelector(".display");
 var correctWrong = document.querySelector(".correct-or-wrong");
+var score = 0;
 
 // question objects array
 var questions = [{
@@ -98,13 +99,13 @@ function welcomeScreen() {
     startScreenButton.addEventListener("click", startQuiz);
 }
 
-function clearWelcomeScreen() {
+function clearScreen() {
     displayElement.innerHTML = "";
 }
 
 function startQuiz(event) {
     // startTimer();
-    clearWelcomeScreen();
+    clearScreen();
     displayQuestions();
 }
 
@@ -147,10 +148,18 @@ function questionsLayout() {
 
 }
 
+// check answer
 function checkAnswer(event) {
-    if (event.target.id === questions[0].answer) {
+    if (event.target.id == questions[0].answer - 1) {
         correctWrong.textContent = "Correct!";
+        score++;
+    } else {
+        correctWrong.textContent = "Wrong!";
     }
+    clearScreen();
+    var answerDisplayInterval = setTimeout(function() {
+
+    }, 2000);
 }
 
 welcomeScreen();
