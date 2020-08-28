@@ -1,4 +1,5 @@
 var displayElement = document.querySelector(".display");
+var correctWrong = document.querySelector(".correct-or-wrong");
 
 // question objects array
 var questions = [{
@@ -9,7 +10,7 @@ var questions = [{
         "Option 3",
         "Option 4"
     ],
-    answer: "Option 2"
+    answer: 2
 }, {
     question1: "Question 2: Semper ubi sub ubi. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua?",
     options: [
@@ -18,7 +19,7 @@ var questions = [{
         "Option 3",
         "Option 4"
     ],
-    answer: "Option 3"
+    answer: 3
 }, {
     question1: "Question 3: Semper ubi sub ubi. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua?",
     options: [
@@ -27,7 +28,7 @@ var questions = [{
         "Option 3",
         "Option 4"
     ],
-    answer: "Option 1"
+    answer: 1
 }, {
     question1: "Question 4: Semper ubi sub ubi. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua?",
     options: [
@@ -36,7 +37,7 @@ var questions = [{
         "Option 3",
         "Option 4"
     ],
-    answer: "Option 2"
+    answer: 2
 }, {
     question1: "Question 5: Semper ubi sub ubi. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua?",
     options: [
@@ -45,7 +46,7 @@ var questions = [{
         "Option 3",
         "Option 4"
     ],
-    answer: "Option 4"
+    answer: 4
 }, {
     question1: "Question 6: Semper ubi sub ubi. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua?",
     options: [
@@ -54,7 +55,7 @@ var questions = [{
         "Option 3",
         "Option 4"
     ],
-    answer: "Option 2"
+    answer: 2
 }, {
     question1: "Question 7: Semper ubi sub ubi. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua?",
     options: [
@@ -63,7 +64,7 @@ var questions = [{
         "Option 3",
         "Option 4"
     ],
-    answer: "Option 1"
+    answer: 1
 }]
 
 // startscreen object
@@ -102,7 +103,6 @@ function clearWelcomeScreen() {
 }
 
 function startQuiz(event) {
-    event.preventDefault();
     // startTimer();
     clearWelcomeScreen();
     displayQuestions();
@@ -138,9 +138,19 @@ function questionsLayout() {
         var answerButton = document.createElement("button");
         answerButton.textContent = questions[0].options[i];
         answerButton.setAttribute("class", "answerButton");
+        answerButton.setAttribute("id", i);
         questionsLi.appendChild(answerButton);
+
+        // check answer
+        answerButton.addEventListener("click", checkAnswer);
     }
 
+}
+
+function checkAnswer(event) {
+    if (event.target.id === questions[0].answer) {
+        correctWrong.textContent = "Correct!";
+    }
 }
 
 welcomeScreen();
