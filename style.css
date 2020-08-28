@@ -1,3 +1,7 @@
 .answersList {
     list-style-type: none;
 }
+
+.correct-or-wrong {
+    display: none;
+}
