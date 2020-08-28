@@ -101,7 +101,7 @@ function welcomeScreen() {
     startScreenButton.addEventListener("click", startQuiz);
 }
 
-// clear scree
+// clear screen
 function clearScreen() {
     displayElement.innerHTML = "";
 }
@@ -115,15 +115,15 @@ function startQuiz(event) {
 
 // display questions
 function displayQuestions() {
-    questionsLayout(questionNo);
+    questionsLayout();
 }
 
 // layout questions
-function questionsLayout(qNo) {
+function questionsLayout() {
 
     // question
     var questionDisplay = document.createElement("p");
-    questionDisplay.textContent = questions[qNo].question;
+    questionDisplay.textContent = questions[questionNo].question;
     questionDisplay.setAttribute("class", "question");
     displayElement.appendChild(questionDisplay);
 
@@ -133,14 +133,14 @@ function questionsLayout(qNo) {
     displayElement.appendChild(questionsUl);
 
     // questions li
-    for (var i = 0; i < questions[qNo].options.length; i++) {
+    for (var i = 0; i < questions[questionNo].options.length; i++) {
         var questionsLi = document.createElement("li");
         questionsLi.setAttribute("class", "questionsLi");
         questionsUl.appendChild(questionsLi);
 
         // answer button
         var answerButton = document.createElement("button");
-        answerButton.textContent = questions[qNo].options[i];
+        answerButton.textContent = questions[questionNo].options[i];
         answerButton.setAttribute("class", "answerButton");
         answerButton.setAttribute("id", i);
         questionsLi.appendChild(answerButton);
