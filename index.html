@@ -4,11 +4,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="./style.css ">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <title>Code Quiz</title>
 </head>
 
 <body>
-
+    <header class="container">
+        <section class="row">
+            <div class="col high-scores-link">
+                <a href="#">View High Scores</a>
+            </div>
+            <div class="col time-left">
+                <p>Time Left:</p>
+            </div>
+        </section>
+    </header>
+    <main class="container">
+        <section class="row question">
+            <div class="col options">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua?</p>
+                <ul class="answersList">
+                    <li class="answers"><button>Answer1</button></li>
+                    <li class="answers"><button>Answer1</button></li>
+                    <li class="answers"><button>Answer1</button></li>
+                    <li class="answers"><button>Answer1</button></li>
+                </ul>
+                <hr>
+                <p class="correct-or-wrong">Correct or Wrong</p>
+            </div>
+        </section>
+    </main>
+    <script src="./script.js "></script>
 </body>
 
 </html>
