@@ -1,5 +1,6 @@
 var questionElement = document.querySelector(".question");
 
+// question objects array
 var questions = [{
     question1: "Question 1: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua?",
     options: [
@@ -65,12 +66,14 @@ var questions = [{
     answer: "Option 1"
 }]
 
+// startscreen object
 var startScreen = {
     startTitle: "Coding Quiz Challenge",
     startMessage: "Try to answer the following questions about coding within the time limit. Keep in mind that all incorrect answers will reduce the time left on the clock",
     startButton: "Start"
 }
 
+// append start screen to page
 questionElement.appendChild(document.createElement("h1")).textContent = startScreen.startTitle;
 questionElement.appendChild(document.createElement("p")).textContent = startScreen.startMessage;
 questionElement.appendChild(document.createElement("button")).textContent = startScreen.startButton;
@@ -80,6 +83,7 @@ var startButton = document.querySelector(".startButton");
 
 function startQuiz(event) {
     event.preventDefault();
+
 }
 
 startButton.addEventListener("click", startQuiz);
