@@ -3,6 +3,7 @@ var displayElement = document.querySelector(".display");
 var correctWrong = document.querySelector(".correct-or-wrong");
 var score = 0;
 var questionNo = 0;
+var initials = "";
 
 // question objects array
 var questions = [{
@@ -75,6 +76,14 @@ var startScreen = {
     startTitle: "Coding Quiz Challenge",
     startMessage: "Try to answer the following questions about coding within the time limit. Keep in mind that all incorrect answers will reduce the time left on the clock",
     startButton: "Start"
+}
+
+// all done object
+var allDoneObj = {
+    heading: "All Done",
+    message: "Your score is ",
+    label: "Enter your initials: ",
+    button: "Submit"
 }
 
 // append start screen to page
@@ -165,7 +174,7 @@ function checkAnswer(event) {
     if (questionNo === questions.length - 1) {
         // if last question
         // submit and display scores
-        displayElement.textContent = `Finished ${score}`;
+        displayAllDone();
     } else {
         questionNo++;
         displayQuestions(questionNo);
@@ -179,6 +188,46 @@ function timeoutAnswerDisplay() {
         correctWrong.textContent = "";
     }, 1000);
 }
+
+function displayAllDone() {
+
+    // all done heading
+    var allDoneHeading = document.createElement("h1");
+    allDoneHeading.textContent = allDoneObj.heading;
+    allDoneHeading.setAttribute("class", "allDoneHeading");
+    displayElement.appendChild(allDoneHeading);
+
+    // all done message
+    var allDoneMessage = document.createElement("p");
+    allDoneMessage.textContent = `${allDoneObj.message} ${score}`;
+    allDoneMessage.setAttribute("class", "allDoneMessage");
+    displayElement.appendChild(allDoneMessage);
+
+    // input label
+    var allDoneLabel = document.createElement("label");
+    allDoneLabel.textContent = allDoneObj.label;
+    allDoneLabel.setAttribute("class", "allDoneLabel");
+    allDoneLabel.setAttribute("for", "allDoneInput");
+    displayElement.appendChild(allDoneLabel);
+
+    // input box
+    var allDoneInput = document.createElement("input");
+    allDoneInput.setAttribute("class", "allDoneInput");
+    allDoneInput.setAttribute("type", "check");
+    allDoneInput.setAttribute("id", "allDoneInput");
+    displayElement.appendChild(allDoneInput);
+
+    // submit button
+    var allDoneButton = document.createElement("button");
+    allDoneButton.textContent = allDoneObj.button;
+    allDoneButton.setAttribute("class", "allDoneButton");
+    displayElement.appendChild(allDoneButton);
+
+    // submit click event listenerto save score
+    allDoneButton.addEventListener("click", submitScore);
+}
+
+function submitScore(event) {}
 
 // open welcome screen
 welcomeScreen();
