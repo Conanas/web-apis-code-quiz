@@ -95,6 +95,13 @@ var saveObjects = {
 // array of save objects
 var saveArray = [];
 
+// highscores object
+var highscoresObj = {
+    heading: "Highscores",
+    scoreHeading: "Score",
+    initialsHeading: "Initials"
+}
+
 // append start screen to page
 function welcomeScreen() {
 
@@ -244,6 +251,57 @@ function submitScore(event) {
     saveObjects.localInitials = document.getElementById("allDoneInput").value;
     saveArray.push(saveObjects);
     localStorage.setItem("saves", JSON.stringify(saveArray));
+    clearScreen();
+    showHighscores();
+}
+
+function showHighscores() {
+
+    // highscores heading
+    var showHighscoresHeading = document.createElement("h1");
+    showHighscoresHeading.textContent = highscoresObj.heading;
+    showHighscoresHeading.setAttribute("class", "highscoresHeading");
+    displayElement.appendChild(showHighscoresHeading);
+
+    // highscores table
+    var highscoresTable = document.createElement("table");
+    highscoresTable.setAttribute("class", "highscoresTable");
+    displayElement.appendChild(highscoresTable);
+
+    // highscores table heading row
+    var highscoresTableHeadingRow = document.createElement("tr");
+    highscoresTable.appendChild(highscoresTableHeadingRow);
+
+    // highscore table score heading
+    var highscoresTableScoreHeading = document.createElement("th");
+    highscoresTableScoreHeading.textContent = highscoresObj.scoreHeading;
+    highscoresTableHeadingRow.appendChild(highscoresTableScoreHeading);
+
+    // highscore table initial row
+    var highscoresTableInitialHeading = document.createElement("th");
+    highscoresTableInitialHeading.textContent = highscoresObj.initialsHeading;
+    highscoresTableHeadingRow.appendChild(highscoresTableInitialHeading);
+
+    // for loop to display all scores in local storage in highscore table
+    for (var i = 0; i < saveArray.length; i++) {
+
+        // new table row
+        var highscoresTableRow = document.createElement("tr");
+        highscoresTable.appendChild(highscoresTableRow);
+
+        // new table data score
+        var highscoresTableDataScore = document.createElement("td");
+        highscoresTableDataScore.textContent = saveArray[i].localScore;
+        highscoresTableRow.appendChild(highscoresTableDataScore);
+
+        // new table data initials
+        var highscoresTableDataInitials = document.createElement("td");
+        highscoresTableDataInitials.textContent = saveArray[i].localInitials;
+        highscoresTableRow.appendChild(highscoresTableDataInitials);
+    }
+
+    // highscores display screen buttons
+
 }
 
 // open welcome screen
