@@ -1,3 +1,4 @@
+// variables
 var displayElement = document.querySelector(".display");
 var correctWrong = document.querySelector(".correct-or-wrong");
 var score = 0;
@@ -99,16 +100,19 @@ function welcomeScreen() {
     startScreenButton.addEventListener("click", startQuiz);
 }
 
+// clear scree
 function clearScreen() {
     displayElement.innerHTML = "";
 }
 
+// starts quiz
 function startQuiz(event) {
     // startTimer();
     clearScreen();
     displayQuestions();
 }
 
+// display questions
 function displayQuestions() {
     questionsLayout();
     for (var i = 0; i < questions.length; i++) {
@@ -116,6 +120,7 @@ function displayQuestions() {
     }
 }
 
+// layout questions
 function questionsLayout() {
 
     // question
@@ -160,10 +165,12 @@ function checkAnswer(event) {
     clearScreen();
 }
 
+// timeout answer
 function timeoutAnswer() {
     var answerDisplayTimeout = setTimeout(function() {
         correctWrong.textContent = "";
     }, 2000);
 }
 
+// open welcome screen
 welcomeScreen();
