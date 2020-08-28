@@ -89,8 +89,11 @@ var allDoneObj = {
 // save object
 var saveObjects = {
     localScore: 0,
-    localInitials: "",
+    localInitials: ""
 }
+
+// array of save objects
+var saveArray = [];
 
 // append start screen to page
 function welcomeScreen() {
@@ -195,6 +198,7 @@ function timeoutAnswerDisplay() {
     }, 1000);
 }
 
+// all done display after completion of quiz
 function displayAllDone() {
 
     // all done heading
@@ -233,8 +237,13 @@ function displayAllDone() {
     allDoneButton.addEventListener("click", submitScore);
 }
 
+// submit and save scores to localStorage
 function submitScore(event) {
-
+    saveArray = JSON.parse(localStorage.getItem("saves"));
+    saveObjects.localScore = score;
+    saveObjects.localInitials = document.getElementById("allDoneInput").value;
+    saveArray.push(saveObjects);
+    localStorage.setItem("saves", JSON.stringify(saveArray));
 }
 
 // open welcome screen
