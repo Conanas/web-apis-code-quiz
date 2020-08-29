@@ -149,7 +149,10 @@ function clearScreen() {
 
 // starts quiz
 function startQuiz(event) {
-    // startTimer();
+
+    // reset question number and score
+    questionNo = 0;
+    score = 0;
     clearScreen();
     startTimer();
     questionsLayout();
@@ -270,10 +273,6 @@ function submitScore() {
     saveArray.push(saveObjects);
     localStorage.setItem("saves", JSON.stringify(saveArray));
 
-    // reset question number and score
-    questionNo = 0;
-    score = 0;
-
     showHighscores();
 }
 
@@ -281,6 +280,7 @@ function submitScore() {
 function showHighscores() {
 
     clearScreen();
+    stopTimer();
 
     // highscores heading
     var showHighscoresHeading = document.createElement("h1");
