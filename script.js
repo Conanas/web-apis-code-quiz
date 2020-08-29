@@ -7,8 +7,9 @@ var score = 0;
 var questionNo = 0;
 var initials = "";
 var interval;
-var totalSeconds = 10;
+var totalSeconds = 60;
 var secondsLeft = 0;
+var timePenalty = 10;
 
 // question objects array
 var questions = [{
@@ -194,6 +195,7 @@ function checkAnswer(event) {
         score++;
     } else {
         correctWrong.textContent = "Wrong!";
+        reduceTime();
     }
     timeoutAnswerDisplay();
     clearScreen();
@@ -360,7 +362,7 @@ function startTimer() {
     interval = setInterval(function() {
         secondsLeft++;
         updateTimerDisplay();
-        if (secondsLeft === totalSeconds) {
+        if (secondsLeft > totalSeconds) {
             finishTimer();
         }
     }, 1000);
@@ -368,7 +370,11 @@ function startTimer() {
 
 // update timer display
 function updateTimerDisplay() {
-    timerSpan.textContent = totalSeconds - secondsLeft;
+    if (secondsLeft > totalSeconds) {
+        timerSpan.textContent = 0;
+    } else {
+        timerSpan.textContent = totalSeconds - secondsLeft;
+    }
 }
 
 // upon timer finish
@@ -394,6 +400,11 @@ function displayTimeoutScreen() {
     timeoutHeading.textContent = timeoutObject.heading;
     timeoutHeading.setAttribute("class", "timeoutHeading");
     displayElement.appendChild(timeoutHeading);
+}
+
+// reduce time for incorrect answer
+function reduceTime() {
+    secondsLeft += timePenalty;
 }
 
 // view highscores button from main element
