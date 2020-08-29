@@ -271,9 +271,28 @@ function submitScore() {
     saveObjects.localScore = score;
     saveObjects.localInitials = document.getElementById("allDoneInput").value;
     saveArray.push(saveObjects);
+    bubbleSortSaveArray();
     localStorage.setItem("saves", JSON.stringify(saveArray));
 
     showHighscores();
+}
+
+// sort the save array from highest to lowest
+function bubbleSortSaveArray() {
+    var swap = false;
+    var arrayLength = saveArray.length - 1;
+    do {
+        swap = false;
+        for (var i = 0; i < arrayLength; i++) {
+            if (saveArray[i].localScore < saveArray[i + 1].localScore) {
+                var temp = saveArray[i];
+                saveArray[i] = saveArray[i + 1];
+                saveArray[i + 1] = temp;
+                swap = true;
+            }
+        }
+        arrayLength--;
+    } while (swap);
 }
 
 // show highscores table
