@@ -5,6 +5,7 @@ var correctWrong = document.querySelector(".correct-or-wrong");
 var score = 0;
 var questionNo = 0;
 var initials = "";
+var interval;
 
 // question objects array
 var questions = [{
@@ -138,6 +139,7 @@ function clearScreen() {
 function startQuiz(event) {
     // startTimer();
     clearScreen();
+    startTimer();
     displayQuestions();
 }
 
@@ -341,6 +343,12 @@ function clearHighscores() {
     saveObjects.localInitials = "";
     clearScreen();
     showHighscores();
+}
+
+function startTimer() {
+    interval = setInterval(function() {
+
+    }, 1000);
 }
 
 // view highscores button from main element
