@@ -1,5 +1,6 @@
 // variables
 var displayElement = document.querySelector(".display");
+var viewHighscores = document.querySelector(".highscoresButton");
 var correctWrong = document.querySelector(".correct-or-wrong");
 var score = 0;
 var questionNo = 0;
@@ -99,7 +100,9 @@ var saveArray = [];
 var highscoresObj = {
     heading: "Highscores",
     scoreHeading: "Score",
-    initialsHeading: "Initials"
+    initialsHeading: "Initials",
+    goBackButton: "Go Back",
+    clearScoresButton: "Clear Highscores"
 }
 
 // append start screen to page
@@ -245,17 +248,27 @@ function displayAllDone() {
 }
 
 // submit and save scores to localStorage
-function submitScore(event) {
-    saveArray = JSON.parse(localStorage.getItem("saves"));
+function submitScore() {
+    if (localStorage.length !== 0) {
+        saveArray = JSON.parse(localStorage.getItem("saves"));
+    } else {
+        saveArray = [];
+    }
     saveObjects.localScore = score;
     saveObjects.localInitials = document.getElementById("allDoneInput").value;
     saveArray.push(saveObjects);
     localStorage.setItem("saves", JSON.stringify(saveArray));
-    clearScreen();
+
+    // reset question number and score
+    questionNo = 0;
+    score = 0;
+
     showHighscores();
 }
 
 function showHighscores() {
+
+    clearScreen();
 
     // highscores heading
     var showHighscoresHeading = document.createElement("h1");
@@ -301,8 +314,37 @@ function showHighscores() {
     }
 
     // highscores display screen buttons
+    // go back button
+    var highscoresGoBackButton = document.createElement("button");
+    highscoresGoBackButton.textContent = highscoresObj.goBackButton;
+    highscoresGoBackButton.setAttribute("class", "goBackButton");
+    displayElement.appendChild(highscoresGoBackButton);
+    highscoresGoBackButton.addEventListener("click", goBack);
 
+    // clear scores button
+    var highscoresClearButton = document.createElement("button");
+    highscoresClearButton.textContent = highscoresObj.clearScoresButton;
+    highscoresClearButton.setAttribute("class", "clearButton");
+    displayElement.appendChild(highscoresClearButton);
+    highscoresClearButton.addEventListener("click", clearHighscores);
 }
+
+function goBack() {
+    clearScreen();
+    welcomeScreen();
+}
+
+function clearHighscores() {
+    localStorage.clear();
+    saveArray = [];
+    saveObjects.localScore = 0;
+    saveObjects.localInitials = "";
+    clearScreen();
+    showHighscores();
+}
+
+// view highscores button from main element
+viewHighscores.addEventListener("click", showHighscores);
 
 // open welcome screen
 welcomeScreen();
