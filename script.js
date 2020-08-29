@@ -1,12 +1,13 @@
 // variables
 var displayElement = document.querySelector(".display");
 var viewHighscores = document.querySelector(".highscoresButton");
+var timerSpan = document.querySelector(".timerSpan");
 var correctWrong = document.querySelector(".correct-or-wrong");
 var score = 0;
 var questionNo = 0;
 var initials = "";
 var interval;
-var totalSeconds = 60;
+var totalSeconds = 10;
 var secondsLeft = 0;
 
 // question objects array
@@ -108,6 +109,11 @@ var highscoresObj = {
     clearScoresButton: "Clear Highscores"
 }
 
+// timeout object
+var timeoutObject = {
+    heading: "You are out of time"
+}
+
 // append start screen to page
 function welcomeScreen() {
 
@@ -129,6 +135,9 @@ function welcomeScreen() {
     startScreenButton.setAttribute("class", "startButton");
     displayElement.appendChild(startScreenButton);
 
+    // start screen timer display
+    timerSpan.textContent = totalSeconds;
+
     startScreenButton.addEventListener("click", startQuiz);
 }
 
@@ -142,11 +151,6 @@ function startQuiz(event) {
     // startTimer();
     clearScreen();
     startTimer();
-    displayQuestions();
-}
-
-// display questions
-function displayQuestions() {
     questionsLayout();
 }
 
@@ -196,11 +200,12 @@ function checkAnswer(event) {
     // check if last question
     if (questionNo === questions.length - 1) {
         // if last question
-        // submit and display scores
+        // submit, display scores and stop timer
+        stopTimer();
         displayAllDone();
     } else {
         questionNo++;
-        displayQuestions(questionNo);
+        questionsLayout(questionNo);
     }
 
 }
@@ -270,6 +275,7 @@ function submitScore() {
     showHighscores();
 }
 
+// show highscores table
 function showHighscores() {
 
     clearScreen();
@@ -333,11 +339,13 @@ function showHighscores() {
     highscoresClearButton.addEventListener("click", clearHighscores);
 }
 
+// go back to welcome screen
 function goBack() {
     clearScreen();
     welcomeScreen();
 }
 
+// clear scores and local storage
 function clearHighscores() {
     localStorage.clear();
     saveArray = [];
@@ -347,6 +355,7 @@ function clearHighscores() {
     showHighscores();
 }
 
+// start quiz timer
 function startTimer() {
     interval = setInterval(function() {
         secondsLeft++;
@@ -357,12 +366,34 @@ function startTimer() {
     }, 1000);
 }
 
+// update timer display
 function updateTimerDisplay() {
-
+    timerSpan.textContent = totalSeconds - secondsLeft;
 }
 
+// upon timer finish
 function finishTimer() {
+    stopTimer();
+    clearScreen();
+    displayTimeoutScreen();
+    var timeoutDisplaytimeout = setTimeout(function() {
+        clearScreen();
+        displayAllDone();
+    }, 1000);
+}
 
+// stop timer
+function stopTimer() {
+    clearInterval(interval);
+    secondsLeft = 0;
+}
+
+// display out of time screen
+function displayTimeoutScreen() {
+    var timeoutHeading = document.createElement("h1");
+    timeoutHeading.textContent = timeoutObject.heading;
+    timeoutHeading.setAttribute("class", "timeoutHeading");
+    displayElement.appendChild(timeoutHeading);
 }
 
 // view highscores button from main element
