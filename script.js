@@ -106,7 +106,7 @@ var highscoresObj = {
     heading: "Highscores",
     scoreHeading: "Score",
     initialsHeading: "Initials",
-    goBackButton: "Go Back",
+    goBackButton: "Start Screen",
     clearScoresButton: "Clear Highscores"
 }
 
