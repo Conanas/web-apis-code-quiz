@@ -6,6 +6,8 @@ var score = 0;
 var questionNo = 0;
 var initials = "";
 var interval;
+var totalSeconds = 60;
+var secondsLeft = 0;
 
 // question objects array
 var questions = [{
@@ -347,8 +349,20 @@ function clearHighscores() {
 
 function startTimer() {
     interval = setInterval(function() {
-
+        secondsLeft++;
+        updateTimerDisplay();
+        if (secondsLeft === totalSeconds) {
+            finishTimer();
+        }
     }, 1000);
+}
+
+function updateTimerDisplay() {
+
+}
+
+function finishTimer() {
+
 }
 
 // view highscores button from main element
