@@ -84,7 +84,14 @@ var startScreen = {
     startButton: "Start"
 }
 
-// all done object
+// correct or wrong text object
+var correctWrongDisplay = {
+    correctText: "Correct!",
+    wrongText: "Wrong!",
+    displayTime: 1000
+}
+
+// all done object for all done text
 var allDoneObj = {
     heading: "All Done",
     message: "Your score is ",
@@ -92,16 +99,16 @@ var allDoneObj = {
     button: "Submit"
 }
 
-// save object
+// save object to save current score and initials
 var saveObjects = {
     localScore: 0,
     localInitials: ""
 }
 
-// array of save objects
+// array of save objects to be loaded from and saved to localStorage
 var saveArray = [];
 
-// highscores object
+// highscores object stores text for highscores page
 var highscoresObj = {
     heading: "Highscores",
     scoreHeading: "Score",
@@ -110,12 +117,12 @@ var highscoresObj = {
     clearScoresButton: "Clear Highscores"
 }
 
-// timeout object
+// timeout object stores text for timeout message
 var timeoutObject = {
     heading: "You are out of time"
 }
 
-// append start screen to page
+// loads the start screen to the displayElement at index.html
 function welcomeScreen() {
 
     // start screen title
@@ -139,26 +146,33 @@ function welcomeScreen() {
     // start screen timer display
     timerSpan.textContent = totalSeconds;
 
+    // add click event listener to the start button to start the quiz
     startScreenButton.addEventListener("click", startQuiz);
 }
 
-// clear screen
+// clears the screen at the displayElement at index.html to make the displayElement ready for the next screen
 function clearScreen() {
     displayElement.innerHTML = "";
 }
 
-// starts quiz
+// starts the quiz
 function startQuiz(event) {
 
     // reset question number and score
     questionNo = 0;
     score = 0;
+
+    // clear the screen
     clearScreen();
+
+    // start the timer
     startTimer();
+
+    // display the questions
     questionsLayout();
 }
 
-// layout questions
+// lays out the questions to the displayElement at index.html
 function questionsLayout() {
 
     // question
@@ -191,38 +205,65 @@ function questionsLayout() {
 
 }
 
-// check answer
+// checks the answer to the question and displays correct or wrong at the bottom of the screen
 function checkAnswer(event) {
+
+    // if the correct answer is clicked
     if (event.target.id == questions[questionNo].answer - 1) {
-        correctWrong.textContent = "Correct!";
+
+        // dispaly correct at bottom of the scren
+        correctWrong.textContent = correctWrongDisplay.correctText;
+
+        // increase the score
         score++;
+
     } else {
-        correctWrong.textContent = "Wrong!";
+
+        // display wrong at the bottom of the screen
+        correctWrong.textContent = correctWrongDisplay.wrongText;
+
+        // reduce the time
         reduceTime();
+
     }
+
+    // clear the answer display at the bottom of the screen
     timeoutAnswerDisplay();
+
+    // clear screen for next question
     clearScreen();
+
     // check if last question
     if (questionNo === questions.length - 1) {
-        // if last question
-        // submit, display scores and stop timer
+
+        // stop timer
         stopTimer();
+
+        // display allDone screen
         displayAllDone();
+
     } else {
+
+        // increase question number
         questionNo++;
-        questionsLayout(questionNo);
+
+        // displays the next question
+        questionsLayout();
     }
-
 }
 
-// timeout answer
+// clear the correct or wrong display at the bottom of the screen
 function timeoutAnswerDisplay() {
+
+    // start timeout to clear answer display
     var answerDisplayTimeout = setTimeout(function() {
+
+        // set text to empty string
         correctWrong.textContent = "";
-    }, 1000);
+    }, correctWrongDisplay.displayTime);
 }
 
-// all done display after completion of quiz
+// all done display after completion of quiz including submit button
 function displayAllDone() {
 
     // all done heading
@@ -263,52 +304,103 @@ function displayAllDone() {
 
 // submit and save scores to localStorage
 function submitScore() {
+
+    // load scores from localStorage to saveArray
     loadLocalScores();
+
+    // assign score from session to saveObject
     saveObjects.localScore = score;
+
+    // assign initials from allDoneInput to saveObject
     saveObjects.localInitials = document.getElementById("allDoneInput").value;
+
+    // add the new score and initial object to the saveArray
     saveArray.push(saveObjects);
+
+    // use bubble sort to organise the array
     bubbleSortSaveArray();
+
+    // save saveArray to localStorage
     localStorage.setItem("saves", JSON.stringify(saveArray));
 
+    // load highscores screen
     showHighscores();
 }
 
 // load highscores from localStorage into saveArray
 function loadLocalScores() {
+
+    // if there data in the localStorage
     if (localStorage.length !== 0) {
+
+        // assign the localStorage to saveArray
         saveArray = JSON.parse(localStorage.getItem("saves"));
+
     } else {
+
+        // if there is no localStorage then saveArray is empty
         saveArray = [];
+
     }
 }
 
 // sort the save array from highest to lowest
 function bubbleSortSaveArray() {
+
+    // varible for swapping state
     var swap = false;
+
+    // arrayLength variable for search
     var arrayLength = saveArray.length - 1;
+
+    // do comparisons while the swap state is true
     do {
+
+        // swap state is false
         swap = false;
+
+        // for each element of the array except the last one
         for (var i = 0; i < arrayLength; i++) {
+
+            // if the score ofthe current object is less than the score of the next object
             if (saveArray[i].localScore < saveArray[i + 1].localScore) {
+
+                // save the current object into temporary variable
                 var temp = saveArray[i];
+
+                // the current object becomes the next object
                 saveArray[i] = saveArray[i + 1];
+
+                // the next object becomes the current object
                 saveArray[i + 1] = temp;
+
+                // swap state is true
                 swap = true;
             }
         }
+
+        // the rest of the array is shortened
         arrayLength--;
+
+        // swap state is true and so sort the rest of the array
+        // if there were no swaps then swap state is false and so the array is sorted
     } while (swap);
 }
 
-// show highscores table
+// show highscores table screen
 function showHighscores() {
 
+    // if there is no data in saveArray
     if (saveArray.length === 0) {
+
+        // load scores from localStorage to saveArray to display them
         loadLocalScores();
-        bubbleSortSaveArray();
     }
 
+    // clear screen if needed
     clearScreen();
+
+    // stop timer if needed
     stopTimer();
 
     // highscores heading
@@ -372,59 +464,114 @@ function showHighscores() {
 
 // go back to welcome screen
 function goBack() {
+
+    // clear screen
     clearScreen();
+
+    // loads start screen
     welcomeScreen();
 }
 
 // clear scores and local storage
 function clearHighscores() {
+
+    // clear localStorage
     localStorage.clear();
+
+    // clears the saveArray
     saveArray = [];
+
+    // save the current session score to the save object
     saveObjects.localScore = 0;
+
+    // save the initials in the save object
     saveObjects.localInitials = "";
+
+    // clear the screen
     clearScreen();
+
+    // load the highscores screen
     showHighscores();
 }
 
 // start quiz timer
 function startTimer() {
+
+    // setInterval to update the time display every second
     interval = setInterval(function() {
+
+        // increase the seconds remaning
         secondsLeft++;
+
+        // update the timer display
         updateTimerDisplay();
+
+        // if the seconds remaining is greater than the total seconds then stop the timer
         if (secondsLeft > totalSeconds) {
+
+            // stop the timer
             finishTimer();
         }
+
+        // interval every second
     }, 1000);
 }
 
 // update timer display
 function updateTimerDisplay() {
+
+    // if the remaing seconds exceeds the total seconds
     if (secondsLeft > totalSeconds) {
+
+        // timer display set to 0
         timerSpan.textContent = 0;
+
     } else {
+
+        // display remaining seconds
         timerSpan.textContent = totalSeconds - secondsLeft;
+
     }
 }
 
 // upon timer finish
 function finishTimer() {
+
+    // stop the timer
     stopTimer();
+
+    // clear the screen
     clearScreen();
+
+    // display out of time message
     displayTimeoutScreen();
+
+    // after 1 second
     var timeoutDisplaytimeout = setTimeout(function() {
+
+        // clear the time out message
         clearScreen();
+
+        // load all done screen
         displayAllDone();
+
     }, 1000);
 }
 
 // stop timer
 function stopTimer() {
+
+    // stop the timer
     clearInterval(interval);
+
+    // reset the seconds remaining
     secondsLeft = 0;
 }
 
 // display out of time screen
 function displayTimeoutScreen() {
+
+    // create and load out of time message element
     var timeoutHeading = document.createElement("h1");
     timeoutHeading.textContent = timeoutObject.heading;
     timeoutHeading.setAttribute("class", "timeoutHeading");
