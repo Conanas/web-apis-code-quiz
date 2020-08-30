@@ -1,3 +1,5 @@
+/* removes the dots from the answer buttons list */
+
 .questionsUl {
     list-style-type: none;
 }

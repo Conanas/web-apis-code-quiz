@@ -4,35 +4,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- link to css file -->
     <link rel="stylesheet" href="./style.css ">
+
+    <!-- link to bootstrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+    <!-- page title -->
     <title>Code Quiz</title>
 </head>
 
 <body>
+
+    <!-- header to display the link to the highscores and display the timer -->
     <header class="container">
+
+        <!-- row for header -->
         <section class="row">
+
+            <!-- column for highscore button -->
             <div class="col high-scores-link">
                 <button class="highscoresButton">View High Scores</button>
             </div>
+
+            <!-- column to display timer -->
             <div class="col time-left">
                 <p class="timeDisplay">Time Left: <span class="timerSpan"></span></p>
             </div>
         </section>
     </header>
-    <main class="container">
-        <section class="row">
-            <div class="col display">
 
+    <!-- main -->
+    <main class="container">
+
+        <!-- row for main -->
+        <section class="row">
+
+            <!-- column for main display element -->
+            <div class="col display">
             </div>
         </section>
+
+        <!-- row to display correct or wrong display -->
         <section class="row">
+
+            <!-- column -->
             <div class="col">
                 <hr>
                 <p class="correct-or-wrong"></p>
             </div>
         </section>
     </main>
+
+    <!-- link to javascript file -->
     <script src="./script.js "></script>
 </body>
 
