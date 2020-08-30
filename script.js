@@ -263,11 +263,7 @@ function displayAllDone() {
 
 // submit and save scores to localStorage
 function submitScore() {
-    if (localStorage.length !== 0) {
-        saveArray = JSON.parse(localStorage.getItem("saves"));
-    } else {
-        saveArray = [];
-    }
+    loadLocalScores();
     saveObjects.localScore = score;
     saveObjects.localInitials = document.getElementById("allDoneInput").value;
     saveArray.push(saveObjects);
@@ -275,6 +271,15 @@ function submitScore() {
     localStorage.setItem("saves", JSON.stringify(saveArray));
 
     showHighscores();
+}
+
+// load highscores from localStorage into saveArray
+function loadLocalScores() {
+    if (localStorage.length !== 0) {
+        saveArray = JSON.parse(localStorage.getItem("saves"));
+    } else {
+        saveArray = [];
+    }
 }
 
 // sort the save array from highest to lowest
@@ -297,6 +302,11 @@ function bubbleSortSaveArray() {
 
 // show highscores table
 function showHighscores() {
+
+    if (saveArray.length === 0) {
+        loadLocalScores();
+        bubbleSortSaveArray();
+    }
 
     clearScreen();
     stopTimer();
