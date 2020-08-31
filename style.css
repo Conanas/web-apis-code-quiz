@@ -5,10 +5,16 @@ header {
     color: white;
 }
 
+
+/* link to high scores from start page */
+
 .high-scores-link {
     margin-top: 10px;
     margin-bottom: 10px;
 }
+
+
+/* time display */
 
 .timeDisplay {
     margin-top: 10px;
