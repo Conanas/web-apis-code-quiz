@@ -5,6 +5,17 @@ header {
     color: white;
 }
 
+.high-scores-link {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.timeDisplay {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 20px;
+}
+
 
 /* buttons */
 
