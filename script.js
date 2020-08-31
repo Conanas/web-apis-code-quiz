@@ -13,68 +13,160 @@ var timePenalty = 10;
 
 // question objects array
 var questions = [{
-    question: "Question 1: Semper ubi sub ubi. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua?",
+    question: "What kind of storage is used to reload data after closing the browser?",
     options: [
-        "Option 1",
-        "Option 2",
-        "Option 3",
-        "Option 4"
+        "scriptStorage",
+        "localStorage",
+        "loadStroage",
+        "sessionStorage"
     ],
     answer: 2
 }, {
-    question: "Question 2: Semper ubi sub ubi. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua?",
+    question: "What does DOM stand for?",
     options: [
-        "Option 1",
-        "Option 2",
-        "Option 3",
-        "Option 4"
+        'Document Other Model',
+        'Document Over Model',
+        'Data Object Model',
+        'Document Object Model',
+        'Date Object Mode',
+        'Document Object Mode'
+    ],
+    answer: 4,
+}, {
+    question: "Inside which HTML element do we put the JavaScript?",
+    options: [
+        "<link>",
+        "<meta>",
+        "<script>",
+        "<javascript>",
+        '<p>'
     ],
     answer: 3
 }, {
-    question: "Question 3: Semper ubi sub ubi. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua?",
+    question: `What is the correct JavaScript syntax to change the content of the following HTML element? <p id="demo">This is a demonstration.</p>`,
     options: [
-        "Option 1",
-        "Option 2",
-        "Option 3",
-        "Option 4"
+        'document.getElementById("demo").innerHTML = "Hello World!";',
+        'document.getElementByName("p").innerHTML = "Hello World!";',
+        'document.getElement("p").innerHTML = "Hello World!";',
+        '#demo.innerHTML = "Hello World!";'
     ],
     answer: 1
 }, {
-    question: "Question 4: Semper ubi sub ubi. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua?",
+    question: "Where is the correct place to insert javaScript?",
     options: [
-        "Option 1",
-        "Option 2",
-        "Option 3",
-        "Option 4"
+        "The <head> section",
+        "The <body> section",
+        "The <header> section",
+        "The <footer> section"
     ],
     answer: 2
 }, {
-    question: "Question 5: Semper ubi sub ubi. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua?",
+    question: 'How do you write "Hello World" in an alert box?',
     options: [
-        "Option 1",
-        "Option 2",
-        "Option 3",
-        "Option 4"
+        'msg("Hello World")',
+        'msgBox("Hello World',
+        'alert("Hello World")',
+        'prompt("Hellow World")',
+        'confirm("Hellow World)',
+        'alertBox("Hello World")'
     ],
-    answer: 4
+    answer: 6
 }, {
-    question: "Question 6: Semper ubi sub ubi. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua?",
+    question: "How do you create a function in JavaScript?",
     options: [
-        "Option 1",
-        "Option 2",
-        "Option 3",
-        "Option 4"
+        "function = myFunction()",
+        "function myFunction()",
+        "function() myFunction",
+        "myFunction() function"
     ],
     answer: 2
 }, {
-    question: "Question 7: Semper ubi sub ubi. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua?",
+    question: "How to write an IF statement in JavaScript?",
     options: [
-        "Option 1",
-        "Option 2",
-        "Option 3",
-        "Option 4"
+        'if (i == 5)',
+        'if (i = 5)',
+        'if i = 5',
+        'if i == 5 then',
+        'if (i = 5) then'
     ],
     answer: 1
+}, {
+    question: "What is the correct way to write a JavaScript array?",
+    options: [
+        'myArray = var["Hello", "World"]',
+        'var = myArray["Hello", "World"]',
+        'var myArray = ("Hello", "World")',
+        'var myArray[] = "Hello", "World"',
+        'var myArray = ["Hello", "World"]',
+        'var[] myArray = "Hello", "World"'
+    ],
+    answer: 5,
+}, {
+    question: "How do you round the number 7.25, to the nearest integer?",
+    options: [
+        'Math.rnd(7.25)',
+        'Math.round[7.25]',
+        'Math.round(7.25)',
+        'round(Math(7.25))',
+        'rnd(7.25).Math'
+    ],
+    answer: 3,
+}, {
+    question: "What is the correct HTML for making a checkbox?",
+    options: [
+        '<checkbox>',
+        '<check>',
+        '<box type="check">',
+        '<input type="checkbox">',
+        '<input type="check">'
+    ],
+    answer: 4,
+}, {
+    question: "What does CSS stand for?",
+    options: [
+        'Cascading Style Sheets',
+        'Creative Style Sheets',
+        'Create System Styles',
+        'Cascading Style Systems',
+        'Cascading System Styles'
+    ],
+    answer: 1,
+}, {
+    question: "What is the correct HTML for referring to an external style sheet?",
+    options: [
+        '<css rel="stylesheet" type="text/css" href="mystyle.css">',
+        '<link rel="stylesheet" type="text/css" href="mystyle.css">',
+        '<style src="mystyle.css">',
+        '<stylesheet>mystyle.css</stylesheet>'
+    ],
+    answer: 2,
+}, {
+    question: "Which is the correct CSS syntax?",
+    options: [
+        'body: {color = black;}',
+        '{body: color: black;}',
+        'body=color: black;',
+        'body {color: black;}'
+    ],
+    answer: 4,
+}, {
+    question: "How do you add a background color for all <h1> elements?",
+    options: [
+        '',
+        '',
+        '',
+        ''
+    ],
+    answer: 4,
+}, {
+    question: "",
+    options: [
+        '',
+        '',
+        '',
+        ''
+    ],
+    answer: 3,
 }]
 
 // startscreen object
