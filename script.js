@@ -43,14 +43,15 @@ var questions = [{
     ],
     answer: 3
 }, {
-    question: `What is the correct JavaScript syntax to change the content of the following HTML element? <p id="demo">This is a demonstration.</p>`,
+    question: `Which event occurs when the user clicks on an HTML element?`,
     options: [
-        'document.getElementById("demo").innerHTML = "Hello World!";',
-        'document.getElementByName("p").innerHTML = "Hello World!";',
-        'document.getElement("p").innerHTML = "Hello World!";',
-        '#demo.innerHTML = "Hello World!";'
+        'onmouseclick',
+        'onsubmit',
+        'onchange',
+        'onclick',
+        'onclickdown'
     ],
-    answer: 1
+    answer: 4
 }, {
     question: "Where is the correct place to insert javaScript?",
     options: [
@@ -109,62 +110,6 @@ var questions = [{
         'Math.round(7.25)',
         'round(Math(7.25))',
         'rnd(7.25).Math'
-    ],
-    answer: 3,
-}, {
-    question: "What is the correct HTML for making a checkbox?",
-    options: [
-        '<checkbox>',
-        '<check>',
-        '<box type="check">',
-        '<input type="checkbox">',
-        '<input type="check">'
-    ],
-    answer: 4,
-}, {
-    question: "What does CSS stand for?",
-    options: [
-        'Cascading Style Sheets',
-        'Creative Style Sheets',
-        'Create System Styles',
-        'Cascading Style Systems',
-        'Cascading System Styles'
-    ],
-    answer: 1,
-}, {
-    question: "What is the correct HTML for referring to an external style sheet?",
-    options: [
-        '<css rel="stylesheet" type="text/css" href="mystyle.css">',
-        '<link rel="stylesheet" type="text/css" href="mystyle.css">',
-        '<style src="mystyle.css">',
-        '<stylesheet>mystyle.css</stylesheet>'
-    ],
-    answer: 2,
-}, {
-    question: "Which is the correct CSS syntax?",
-    options: [
-        'body: {color = black;}',
-        '{body: color: black;}',
-        'body=color: black;',
-        'body {color: black;}'
-    ],
-    answer: 4,
-}, {
-    question: "How do you add a background color for all <h1> elements?",
-    options: [
-        '',
-        '',
-        '',
-        ''
-    ],
-    answer: 4,
-}, {
-    question: "",
-    options: [
-        '',
-        '',
-        '',
-        ''
     ],
     answer: 3,
 }]
