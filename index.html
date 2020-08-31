@@ -18,21 +18,24 @@
 <body>
 
     <!-- header to display the link to the highscores and display the timer -->
-    <header class="container">
+    <header>
 
-        <!-- row for header -->
-        <section class="row">
+        <div class="container">
 
-            <!-- column for highscore button -->
-            <div class="col-6 high-scores-link">
-                <button class="highscoresButton">View High Scores</button>
-            </div>
+            <!-- row for header -->
+            <section class="row">
 
-            <!-- column to display timer -->
-            <div class="col-6 time-left">
-                <p class="timeDisplay">Time Left: <span class="timerSpan"></span></p>
-            </div>
-        </section>
+                <!-- column for highscore button -->
+                <div class="col-sm-4 high-scores-link">
+                    <button class="highscoresButton">View High Scores</button>
+                </div>
+
+                <!-- column to display timer -->
+                <div class="col-sm-4 time-left">
+                    <p class="timeDisplay">Time Left: <span class="timerSpan"></span></p>
+                </div>
+            </section>
+        </div>
     </header>
 
     <!-- main -->
@@ -42,7 +45,7 @@
         <section class="row">
 
             <!-- column for main display element -->
-            <div class="col-md display">
+            <div class="col-md-8 display">
             </div>
         </section>
 
@@ -50,7 +53,7 @@
         <section class="row">
 
             <!-- column -->
-            <div class="col-md">
+            <div class="col-md-8">
                 <hr>
                 <p class="correct-or-wrong"></p>
             </div>
