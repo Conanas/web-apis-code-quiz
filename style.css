@@ -1,3 +1,18 @@
+header {
+    margin: 20px auto;
+    padding: 20px;
+    background-color: black;
+    color: white;
+}
+
+
+/* buttons */
+
+button {
+    background-color: khaki;
+}
+
+
 /* removes the dots from the answer buttons list */
 
 .questionsUl {
