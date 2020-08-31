@@ -7,7 +7,7 @@ var score = 0;
 var questionNo = 0;
 var initials = "";
 var interval;
-var totalSeconds = 60;
+var totalSeconds = 100;
 var secondsLeft = 0;
 var timePenalty = 10;
 
