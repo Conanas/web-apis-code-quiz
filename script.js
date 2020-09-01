@@ -20,7 +20,7 @@ var questions = [{
         "loadStroage",
         "sessionStorage"
     ],
-    answer: 2
+    answer: "localStorage"
 }, {
     question: "What does DOM stand for?",
     options: [
@@ -31,7 +31,7 @@ var questions = [{
         'Date Object Mode',
         'Document Object Mode'
     ],
-    answer: 4,
+    answer: 'Document Object Model',
 }, {
     question: "Inside which HTML element do we put the JavaScript?",
     options: [
@@ -41,7 +41,7 @@ var questions = [{
         "<javascript>",
         '<p>'
     ],
-    answer: 3
+    answer: "<script>"
 }, {
     question: `Which event occurs when the user clicks on an HTML element?`,
     options: [
@@ -51,7 +51,7 @@ var questions = [{
         'onclick',
         'onclickdown'
     ],
-    answer: 4
+    answer: 'onclick'
 }, {
     question: "Where is the correct place to insert javaScript?",
     options: [
@@ -60,7 +60,7 @@ var questions = [{
         "The <header> section",
         "The <footer> section"
     ],
-    answer: 2
+    answer: "The <body> section"
 }, {
     question: 'How do you write "Hello World" in an alert box?',
     options: [
@@ -71,7 +71,7 @@ var questions = [{
         'confirm("Hellow World)',
         'alert("Hello World")'
     ],
-    answer: 6
+    answer: 'alert("Hello World")'
 }, {
     question: "How do you create a function in JavaScript?",
     options: [
@@ -80,7 +80,7 @@ var questions = [{
         "function() myFunction",
         "myFunction() function"
     ],
-    answer: 2
+    answer: "function myFunction()"
 }, {
     question: "How to write an IF statement in JavaScript?",
     options: [
@@ -90,7 +90,7 @@ var questions = [{
         'if i == 5 then',
         'if (i = 5) then'
     ],
-    answer: 1
+    answer: 'if (i == 5)'
 }, {
     question: "What is the correct way to write a JavaScript array?",
     options: [
@@ -101,7 +101,7 @@ var questions = [{
         'var myArray = ["Hello", "World"]',
         'var[] myArray = "Hello", "World"'
     ],
-    answer: 5,
+    answer: 'var myArray = ["Hello", "World"]'
 }, {
     question: "How do you round the number 7.25, to the nearest integer?",
     options: [
@@ -111,7 +111,7 @@ var questions = [{
         'round(Math(7.25))',
         'rnd(7.25).Math'
     ],
-    answer: 3,
+    answer: 'Math.round(7.25)'
 }, {
     question: "Which of the following function of String object splits a String object into an array of strings by separating the string into substrings?",
     options: [
@@ -121,7 +121,7 @@ var questions = [{
         'split()',
         'slice()'
     ],
-    answer: 4,
+    answer: 'split()'
 }, {
     question: "Which of the following function of Array object removes the last element from an array and returns that element?",
     options: [
@@ -130,7 +130,7 @@ var questions = [{
         'shove()',
         'remove()'
     ],
-    answer: 1,
+    answer: 'pop()'
 }, {
     question: "How can you detect the client's browser name?",
     options: [
@@ -140,7 +140,7 @@ var questions = [{
         'app.navigator',
         'navigator.appName'
     ],
-    answer: 5,
+    answer: 'navigator.appName'
 }, {
     question: "How do you declare a JavaScript variable",
     options: [
@@ -150,7 +150,7 @@ var questions = [{
         'var x()',
         'var() x'
     ],
-    answer: 3,
+    answer: 'var x'
 }, {
     question: "Which operator is used to assign a value to a variable?",
     options: [
@@ -161,7 +161,7 @@ var questions = [{
         '+',
         '%'
     ],
-    answer: 2,
+    answer: '='
 }]
 
 // startscreen object
@@ -283,7 +283,6 @@ function questionsLayout() {
         var answerButton = document.createElement("button");
         answerButton.textContent = questions[questionNo].options[i];
         answerButton.setAttribute("class", "answerButton");
-        answerButton.setAttribute("id", i);
         questionsLi.appendChild(answerButton);
 
         // check answer
@@ -296,7 +295,7 @@ function questionsLayout() {
 function checkAnswer(event) {
 
     // if the correct answer is clicked
-    if (event.target.id == questions[questionNo].answer - 1) {
+    if (event.target.textContent == questions[questionNo].answer) {
 
         // dispaly correct at bottom of the scren
         correctWrong.textContent = correctWrongDisplay.correctText;
