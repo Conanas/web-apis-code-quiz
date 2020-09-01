@@ -17,7 +17,7 @@ var questions = [{
     options: [
         "scriptStorage",
         "localStorage",
-        "loadStroage",
+        "loadStorage",
         "sessionStorage"
     ],
     answer: "localStorage"
