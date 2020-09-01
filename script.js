@@ -66,10 +66,10 @@ var questions = [{
     options: [
         'msg("Hello World")',
         'msgBox("Hello World',
-        'alert("Hello World")',
+        'alertBox("Hello World")',
         'prompt("Hellow World")',
         'confirm("Hellow World)',
-        'alertBox("Hello World")'
+        'alert("Hello World")'
     ],
     answer: 6
 }, {
@@ -112,6 +112,56 @@ var questions = [{
         'rnd(7.25).Math'
     ],
     answer: 3,
+}, {
+    question: "Which of the following function of String object splits a String object into an array of strings by separating the string into substrings?",
+    options: [
+        'string()',
+        'replace()',
+        'splice()',
+        'split()',
+        'slice()'
+    ],
+    answer: 4,
+}, {
+    question: "Which of the following function of Array object removes the last element from an array and returns that element?",
+    options: [
+        'pop()',
+        'push()',
+        'shove()',
+        'remove()'
+    ],
+    answer: 1,
+}, {
+    question: "How can you detect the client's browser name?",
+    options: [
+        'navigator.appBrowser',
+        'app.browserName',
+        'navigator.browserName',
+        'app.navigator',
+        'navigator.appName'
+    ],
+    answer: 5,
+}, {
+    question: "How do you declare a JavaScript variable",
+    options: [
+        'variable x',
+        'x = var',
+        'var x',
+        'var x()',
+        'var() x'
+    ],
+    answer: 3,
+}, {
+    question: "Which operator is used to assign a value to a variable?",
+    options: [
+        '!',
+        '=',
+        '*',
+        '#',
+        '+',
+        '%'
+    ],
+    answer: 2,
 }]
 
 // startscreen object
