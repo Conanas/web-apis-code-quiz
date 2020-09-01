@@ -30,8 +30,20 @@ button {
 }
 
 
+/* question display */
+
+.question {
+    font-size: 32px;
+    font-weight: bold;
+}
+
+
 /* removes the dots from the answer buttons list */
 
 .questionsUl {
     list-style-type: none;
+}
+
+.correct-or-wrong {
+    font-size: 24px;
 }
