@@ -18,5 +18,16 @@ After submitting their score and initials the user is then taken to the highscor
 
 https://conanas.github.io/web-apis-code-quiz/
 
-## Demo GIF
+## Screenshots
 
+###### Welcome screen
+
+![Alt text](./screenshots/welcome-screen.png "Welcome Screen")
+
+###### Question Example
+
+![Alt text](./screenshots/question-example.png "Question Example")
+
+###### Highscores Screen
+
+![Alt text](./screenshots/highscores.png "Highscores Screen")
